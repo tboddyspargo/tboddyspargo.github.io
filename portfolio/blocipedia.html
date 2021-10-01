@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>Blocipedia | Tyler BoddySpargo</title>
+	<meta name="description" content="A Wikipedia-style web application built with Ruby on Rails, Blocipedia incorporates 3rd party gems like Devise, Redcarpet, and Stripe to provide a realistic ...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="http://tyler.boddyspargo.com/portfolio/portfolio/blocipedia.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Tyler BoddySpargo" href="http://tyler.boddyspargo.com/portfolio/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	 <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103027689-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-103027689-1');
+  </script>
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="https://secure.gravatar.com/avatar/e6191afa959c270e9e593538141dd011?s=100" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Tyler BoddySpargo</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/about/">
+					About
+				</a>
+			</li>
+			
+			
+			
+			<li>
+				<a class="page-link" href="/contact/">
+					Contact
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="/resume" title="Résumé">Résumé</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/tboddyspargo" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/tylerboddyspargo/" title="Follow on LinkedIn">
+		<i class="fa fa-fw fa-linkedin"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/blocipedia_banner_1.png')">
+    <h1 class="title">Blocipedia</h1>
+    <p class="meta">
+    March 1, 2018
+    
+    </p>
+  </header>
+  <section class="post-content"><p>A Wikipedia-style web application built with Ruby on Rails, Blocipedia incorporates 3rd party gems like <a href="#devise---authentication">Devise</a>, <a href="#redcarpet">Redcarpet</a>, and <a href="#stripe---payments">Stripe</a> to provide a realistic ‘wiki’ experience.</p>
+
+<p><img src="https://tboddyspargo.github.io/img/blocipedia_landing_2.png" alt="Blocipedia Landing Page" /></p>
+
+<h1 id="devise---authentication">Devise - Authentication</h1>
+
+<p>For user authentication, Blocipedia makes use of a really handy and popular rails extention and gem called <a href="https://github.com/plataformatec/devise">devise</a>. It enhances your <code class="language-plaintext highlighter-rouge">User</code> model with the necessary attributes and methods for secure authentication as well as many additional auth-related features.</p>
+
+<p><img src="https://tboddyspargo.github.io/img/blocipedia_devise_1.png" alt="Default Devise View" /></p>
+
+<p>Out-of-the-box devise (depicted above) works quite well, but it is a very plain appearance by default. As Blocipedia matured and took on a particular look and feel (inherited from Boostrap v4), I wanted to modify the views that devise provides by default to fit in a bit better. Luckily Devise supports customization fairly well, so all I had to do was run this command:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rails</span> <span class="n">generate</span> <span class="n">devise</span><span class="ss">:views</span> <span class="no">User</span>
+</code></pre></div></div>
+
+<p>This moved the default devise views into my application directories, so that I could modify them to fit my needs, adding bootstrap wrappers and classes. This led to a set of views that was much more in-line with the rest of the application aesthetic.</p>
+
+<p>While most of what I changed was HTML tags and classes, I also customized the default devise messaging system to integrate better with my own rails <code class="language-plaintext highlighter-rouge">flash</code>-based approach for displaying success/failure messages.</p>
+
+<p>Views weren’t the only thing about devise I ended up wanting to customize, however. I needed custom user-related routes like <code class="language-plaintext highlighter-rouge">/unsubscribe_from_premium</code> and <code class="language-plaintext highlighter-rouge">/user/update_password</code>. Customizing the routes did end up posing some challenges; particularly when trying to write tests for my intended functionality. Here is the error I received when I attempted to run these tests.</p>
+
+<p><img src="https://tboddyspargo.github.io/img/blocipedia_devise_2.png" alt="Default Tests Error Message" /></p>
+
+<p>Luckily, the answer is right there in the error message, but it took a bit of research to understand exactly what it meant. I learned that these tests bypass the routing mechanism that devise relies on to direct URIs to their appropriate actions. What I needed to do was to tell the test to use those ‘mappings’ so that the correct actions are invoked. To do this I specified the devise mappings in the <code class="language-plaintext highlighter-rouge">@request.env</code> hash prior to making the requests.</p>
+
+<p><em>[spec/controllers/registrations_controller_spec.rb]</em></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@request</span><span class="p">.</span><span class="nf">env</span><span class="p">[</span><span class="s2">"devise.mapping"</span><span class="p">]</span> <span class="o">=</span> <span class="no">Devise</span><span class="p">.</span><span class="nf">mappings</span><span class="p">[</span><span class="ss">:user</span><span class="p">]</span>
+  <span class="k">end</span>
+</code></pre></div></div>
+
+<p>Doing that allowed all the test requests to invoke the appropriate actions and lead to the expected outcomes.</p>
+
+<h1 id="pundit---authorization">Pundit - Authorization</h1>
+
+<p><a href="https://github.com/varvet/pundit">Pundit</a> is a tool that allows you to create authorization logic (as opposed to authentication logic) to allow users to access <em>only</em> that information which they should be allowed to access.</p>
+
+<p>Pundit does this by creating policy classes associated with models. When used a appropriately, the Pundit policy for a stands as a protective layer in between the access request and the model or controller itself. Each model and controller method/action can have a corresponding Pundit policy method which evaluates the current context to return a <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code> representation of whether or not the user should be allowed to perform that action. Often these decisions are based solely on the logged in user instance and the model class they are trying to access.</p>
+
+<p>For example, Blocipedia allows non-members to read public wikis, but private wikis may only be seen by their creators and collaborators. The pundit <code class="language-plaintext highlighter-rouge">wiki_policy</code> includes the following to boolean methods which determine a user’s ability to request the <code class="language-plaintext highlighter-rouge">index</code> and <code class="language-plaintext highlighter-rouge">show</code> actions on the <code class="language-plaintext highlighter-rouge">Wiki</code> controller.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">index?</span>
+  <span class="kp">true</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">show?</span>
+  <span class="n">user</span><span class="p">.</span><span class="nf">try</span><span class="p">(</span><span class="ss">:admin?</span><span class="p">)</span> <span class="n">or</span> <span class="n">user</span> <span class="o">==</span> <span class="n">record</span><span class="p">.</span><span class="nf">owner</span> <span class="n">or</span> <span class="n">record</span><span class="p">.</span><span class="nf">collaborators</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">user_id: </span><span class="n">user</span><span class="p">.</span><span class="nf">try</span><span class="p">(</span><span class="ss">:id</span><span class="p">))</span> <span class="n">or</span> <span class="n">record</span><span class="p">.</span><span class="nf">public?</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>As you can see, anyone may access the <code class="language-plaintext highlighter-rouge">index</code> action on the <code class="language-plaintext highlighter-rouge">Wiki</code> controller. Granted, the set of wikis that are shown on that page are only a subset (i.e. ‘public’ wikis) if no user is logged in, but that logic is handled in what’s called a Pundit Scope definition. Here we’re only determining if they’re allowed to execute an action on the controller.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">show</code> action has a much higher barrier of entry. A user must be an admin, the owner of the wiki in question, a contributor to it (via the HMT relationship), or the wiki must be public in order for the action to be allowed.</p>
+
+<p>Pundit can greatly simplify the management of authroization strategies through clear separation of concerns. When data models begin to have complex relationships with other models that affect authorization, defining scope can be especially tricky, but knowing that authorization is handled in one specific location is extraordinarily helpful.</p>
+
+<h1 id="redcarpet">Redcarpet</h1>
+
+<p>I couldn’t imagine writing a wikipedia ‘pastiche’ that didn’t involve some form of markdown language. While I have a lot of experience with the <a href="https://meta.wikimedia.org/wiki/Help:Advanced_editing">mediawiki</a> markdown style, I rather prefer the style used by <a href="https://guides.github.com/features/mastering-markdown/">github</a> and other code-focused platforms. I searched around for a bit and found redcarpet to be a good option for rails development, so I included it in my project very near the beginning.</p>
+
+<p>I wrote several helper functions to help provide seed data for Blocipedia’s dev and test environments and was disappointed to learn that tools like FactoryBot recommend NOT leveraging their factories in seed files, so there is a bit of redundancy where those ‘fake wiki’ functions are concerned. I also used <a href="https://github.com/stympy/faker">Faker</a> to easily access a bunch of fun example text to make these non-production environments feel more real.</p>
+
+<h2 id="markdown-previews">Markdown Previews</h2>
+<p>A big feature that I found missing in this project early on was the ability to preview a wiki that you’re editing so that you can quickly make adjustments and obtain your desired look before actually ‘saving’ the page. This was somewhat tricky however, as redcarpet performs server-side HTML rendering of markdown text. When the user is editing, however, the server doesn’t have those edits until they’re submitted – traditionally as part of the create/update actions – so I needed some other tool.</p>
+
+<p>I needed to have a small piece of aysynchronous code in the <code class="language-plaintext highlighter-rouge">/edit/:id</code> view that would make a server call to render some submitted text and send back the rendered html. The client side code would then insert the received HTMl into a ‘preview container’ for display to the user.</p>
+
+<p>To accomplish this, I created a custom <code class="language-plaintext highlighter-rouge">preview</code> action in the <code class="language-plaintext highlighter-rouge">wikis_controller.rb</code> that corresponded to a <code class="language-plaintext highlighter-rouge">/markdown</code> route in <code class="language-plaintext highlighter-rouge">routes.rb</code>. By performing a <code class="language-plaintext highlighter-rouge">POST</code> to that route, I could leverage the server-side rendering capabilities of Redcarpet with a helper function and return it to the calling code - a snippet of JQuery that made the request and used a small callback function to insert it into the <code class="language-plaintext highlighter-rouge">wiki-preview</code> container, which corresponded with a tabbed area using bootstrap.</p>
+
+<p>The result is a very functional and convenient preview feature to help users quickly verify the effects of the markup they are writing.</p>
+
+<h1 id="bootstrap-4">Bootstrap 4</h1>
+
+<p>My Blocipedia project cooincided nicely with the release of Twitter <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/">Bootstrap’s v4</a> release. This version was a significant overhaul of Bootstrap’s paradigm with changes to underlying css properties used, syntax, and offered features. While it took some adjusting to, I greatly appreciated the updates: grid layout leveraging <code class="language-plaintext highlighter-rouge">flex</code> instead of <code class="language-plaintext highlighter-rouge">float</code>; improved class relationships which reduced the overall quantity of classes required; and the updated aesthetics which, though similar, are more ‘clean’ than previous versions, in my opinion.</p>
+
+<h1 id="stripe">Stripe</h1>
+
+<p>Integrating with <a href="https://stripe.com/">Stripe</a> allowed me to explore the real-world scenario of incorporating payment and subscriptions into my application. Blocipedia users can upgrade their membership to <code class="language-plaintext highlighter-rouge">Premium</code> status to access additional features, like creating private wikis. Since Blocipedia is not a true business venture, only the <a href="https://stripe.com/docs/testing">test version</a> of Stripe is used to demonstrate this functionality (no financial transactions will actually take place).</p>
+
+<h1 id="try-it">Try it</h1>
+
+<p><a href="https://protected-lowlands-64539.herokuapp.com/">Hosted on Herkoku</a></p>
+</section>
+</article>
+
+<!-- Disqus -->
+
+
+    </div>
+    <script src="/js/main.js"></script>
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>

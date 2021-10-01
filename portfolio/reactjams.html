@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>ReactJams | Tyler BoddySpargo</title>
+	<meta name="description" content="The React paradigm allowed me to think in very different ways about how BlocJams was constructed and the ways in which the constituent parts interacted. Its ...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="http://tyler.boddyspargo.com/portfolio/portfolio/reactjams.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Tyler BoddySpargo" href="http://tyler.boddyspargo.com/portfolio/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	 <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103027689-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-103027689-1');
+  </script>
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="https://secure.gravatar.com/avatar/e6191afa959c270e9e593538141dd011?s=100" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Tyler BoddySpargo</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/about/">
+					About
+				</a>
+			</li>
+			
+			
+			
+			<li>
+				<a class="page-link" href="/contact/">
+					Contact
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="/resume" title="Résumé">Résumé</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/tboddyspargo" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/tylerboddyspargo/" title="Follow on LinkedIn">
+		<i class="fa fa-fw fa-linkedin"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/blocjams_playback_dark.png')">
+    <h1 class="title">ReactJams</h1>
+    <p class="meta">
+    May 14, 2017
+    
+    </p>
+  </header>
+  <section class="post-content"><p>The React paradigm allowed me to think in very different ways about how BlocJams was constructed and the ways in which the constituent parts interacted. Its ‘component’ model involved less separation between HTML and JavaScript and allows one to consider sections of a page as self-contained units with very explicit and intentional communication between them. This was exciting, but it also introduced significant challenges.</p>
+
+<hr />
+
+<h2 id="ecma-script-2015">ECMA Script 2015</h2>
+
+<p>In addition to working with the new methodology of React, I was also using features of ES 2015 to re-write BlocJams. This, in addition to a growing comfort native type methods allowed me to write JavaScript code that was more succinct while remaining easy to read and efficient. One aspect of ES 2015 that I was excited to use (where appropriate) with React was the Object prototype shorthand ‘class’.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">PlayerBar</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="na">volume</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">position</span><span class="p">:</span> <span class="mi">0</span> <span class="p">};</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>While functional components were appropriate in other situations, I found it easier to think of component prototypes in an object-oriented fashion.</p>
+
+<p>Another feature of ES 2015 that I used extensively was arrow functions. The ability to quickly and easily control a functions scope was a very welcome tool during this re-write.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">playPauseHandler</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">playing</span><span class="p">:</span> <span class="o">!</span><span class="nx">prevState</span><span class="p">.</span><span class="nx">playing</span> <span class="p">}));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Other ES 2015 perks that featured prominently in this project included: Object and Array deconstruction and initialization, Object.assign, template strings, let, and const. It was extremely fun to experience the benefits of these enhancements to JavaScript and compare them with the ‘old way’ of writing JavaScript.</p>
+
+<hr />
+
+<h2 id="challenges-with-react">Challenges with React</h2>
+
+<p>Using React’s component model to think about the BlocJams music streaming app facilitated many things. A components properties could easily be referenced to build a view that dynamically updated as the values behind those properties also did. However, the smaller the components got, the more they needed to depend on external information to update appropriately. This was a challenge, but a relatively small one. The bigger challenge emerged when these small components not only depended on external properties (form parent components), but also needed to be able to manipulate those properties and share them with yet more components.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;PlayerBar</span> <span class="na">currentSongIndex=</span><span class="s">{this.state.currentSongIndex}</span>
+           <span class="na">currentSong=</span><span class="s">{this.state.album.songs[this.state.currentSongIndex]}</span>
+           <span class="na">playing=</span><span class="s">{this.state.playing}</span>
+           <span class="na">artist=</span><span class="s">{this.state.album.artist}</span>
+           <span class="na">playPause=</span><span class="s">{this.playPauseHandler}</span>
+           <span class="na">changeSong=</span><span class="s">{this.changeSong}</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>My research led me to the conclusion that I needed to lift some properties ‘up’ in the component chain so that the ‘owner’ of a particular property like the status variable, <code class="language-plaintext highlighter-rouge">playing</code>, would be a common ancestor of every component that needed to reference it. Additionally, I had to pass functions as parameters down to sub-components so that they could modify the value of its parent’s properties. Only then could all the various components truly be in sync with each other and agree on the overall ‘state’ of the application.</p>
+
+<h2 id="third-party-libraries">Third Party Libraries</h2>
+
+<p>The challenges certainly didn’t end there! I started out this project with the understanding that I would use the <a href="https://github.com/hadley/plyr"><code class="language-plaintext highlighter-rouge">plyr</code></a> audio library to provide the central functionality of BlocJams – playing music. Learning how to use the library was simple enough, but it needed to hook into the components in appropriate ways to that the page elements responded as the music played and/or as the user interacted with the control elements on the page (audio seek bar, play/pause buttons, next/previous buttons). The seek bar proved most complicated, because it qualified for both of these uses and needed to be updated regularly as a song was playing.</p>
+
+<p><img src="/img/blocjams_album2.png" alt="Audio controls" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">plyr</code> library broadcasts events as a songs playback position changes, so I needed to create event listeners that would update the component properties related to the seek bar’s position. Now, as the user dragged the seek bar’s control it also had to set a new position for the music playback. However, if a user and the <code class="language-plaintext highlighter-rouge">plyr</code> event were both trying to update the seek bar’s position at the same time, it would make for a very frustrating experience indeed - the users dragging action would essentially have no effect because the broadcasted events happen so regularly, that they would always overwrite the user’s changes. So, each time the user starts dragging the seek bar slider, the event listener would have to be torn down and re-created when the user stoped dragging.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">seekHandler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">position</span><span class="p">:</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)});</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">timeupdate</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">positionUpdater</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">seekTimer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">seekTimer</span> <span class="o">=</span> <span class="nx">clearTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">seekTimer</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">seekTimer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">seek</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">position</span><span class="p">);</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">timeupdate</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">positionUpdater</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">250</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The final challenge came when reviewing and refactoring the React version of BlocJams. With React, the code is broken into small components. With static content that’s easy to read and quite semantic. However, with more complex and dynamic content, it can be very difficult to understand how component properties affect behavior as you flip from file to file simply to find out how one function call affects each dependent component. This wasn’t really a problem with a development solution beyond trying to simplify component design as much as possible (fewer shared properties and state properties). That being said, as I spent more time thinking about and reading React components, it became marginally easier to visualize their relationships. Another tool that helped a bit was the React dev tool plugin for Chrome, which allows you to quickly navigate through the component tree and watch properties as they get updated.</p>
+
+<hr />
+
+<h2 id="jammin-out">Jammin’ Out</h2>
+
+<p>After overcoming all those obstacles, the React version of BlocJams was a fully functional music streaming application. It was extremely rewarding to be able to use it to actually listen to music while I ironed out the final kinks. Although it wasn’t backed by a true database, it accomplished all the essential parts of any streaming service with efficacy. Coming into the project, I didn’t know what to expect from React. My previous experience with AngularJS and KnockoutJS gave me a certain approach to creating SPAs. The component architecture itself was new, but relatively easy to wrap my head around - the appeal and benefits seemed clear to me. However, the JSX syntax, component state and properties, and leveraging events from within components were all things that challenged my assumptions about the MVC (Model-View-Controller) approach. I have always loved taking complex problems and looking at them through new lenses as well as solving them with different tools; and re-building BlocJams using React was exactly that kind of exercise!</p>
+
+<p><img src="/img/blocjams3_album1.png" alt="App playing music" /></p>
+</section>
+</article>
+
+<!-- Disqus -->
+
+
+    </div>
+    <script src="/js/main.js"></script>
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>

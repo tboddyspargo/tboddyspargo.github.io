@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>BlocJams | Tyler BoddySpargo</title>
+	<meta name="description" content="This HTML5/CSS/JavaScript project involved building a simple static content webpage that provides the skeleton for a more complex web application (a music st...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="http://tyler.boddyspargo.com/portfolio/portfolio/blocjams.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Tyler BoddySpargo" href="http://tyler.boddyspargo.com/portfolio/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	 <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103027689-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-103027689-1');
+  </script>
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="https://secure.gravatar.com/avatar/e6191afa959c270e9e593538141dd011?s=100" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Tyler BoddySpargo</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/about/">
+					About
+				</a>
+			</li>
+			
+			
+			
+			<li>
+				<a class="page-link" href="/contact/">
+					Contact
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="/resume" title="Résumé">Résumé</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/tboddyspargo" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/tylerboddyspargo/" title="Follow on LinkedIn">
+		<i class="fa fa-fw fa-linkedin"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/blocjams_playback_dark.png')">
+    <h1 class="title">BlocJams</h1>
+    <p class="meta">
+    April 4, 2017
+    
+    </p>
+  </header>
+  <section class="post-content"><p>This HTML5/CSS/JavaScript project involved building a simple static content webpage that provides the skeleton for a more complex web application (a music streaming site). I knew, starting out, that much of the content was going to be review for me, but I also knew that it was going to be helpful to revisit and explore the fundamentals of JavaScript, HTML, and CSS and I was looking forward to it; And, although Bloc provides guides for most of the content, there were small ways that I was able to add some personal flare to BlocJams.</p>
+
+<hr />
+
+<h2 id="the-basics">The Basics</h2>
+
+<p>The first version of BlocJams (I went on to create two others), was built with vanilla JavaScript. This gave me the opportunity to practice essential pieces of the language and to understand what other frameworks and libraries were using under the hood. Beyond that, it helped me appreciate the kinds of problems that such packages seek to address. Indeed, I found myself writing some small functions to perform repetative tasks that JS libraries like jQuery also provide (like <code class="language-plaintext highlighter-rouge">forEach()</code> on arrays and <code class="language-plaintext highlighter-rouge">numberPad()</code> to format integers as strings with leading zeros).</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">numberPad</span><span class="p">(</span><span class="nx">number</span><span class="p">,</span> <span class="nx">digits</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">string</span> <span class="o">=</span> <span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span>
+      <span class="nx">i</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">digits</span> <span class="o">-=</span> <span class="nx">string</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">digits</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">string</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="branch-out">Branch Out</h2>
+
+<p>I was able to move through the project fairly quickly, which gave me the opportunity to get a bit creative with the code. I’m very interested in code optimization, so I worked to refactor certain things, and make it appear as though the app had more ‘dynamic’ content. This included adding the ability to specify an ‘album id’ in the album URL so that clicking on a thumbnail in the collections page sent you to the appropriate album page.</p>
+
+<p>Adding this functionality required a bit of research to understand how URL query parameters worked and how to leverage them for my particular use. I wrote a <code class="language-plaintext highlighter-rouge">getHtmlQueryAsJson()</code> function to parse the URL query (a string) and return an object with properties that I could reference as indeces in the array of albums.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">getHtmlQueryAsJson</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">&amp;</span><span class="dl">'</span><span class="p">),</span>
+      <span class="nx">param</span><span class="p">,</span>
+      <span class="nx">result</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">param</span> <span class="k">of</span> <span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">param</span> <span class="o">=</span> <span class="nx">param</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">=</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">param</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This was a minor enhancement, but it laid the groundwork for a web application that could be fueled by a robust backend database. Additionally, it made what was a static web page, look and feel as though it was more.</p>
+
+<p><img src="/img/blocjams1_album2.png" alt="URL query language for album pages" /></p>
+
+<hr />
+
+<h2 id="functional-and-beautiful">Functional and Beautiful</h2>
+
+<p>My past experience with CSS allowed me to add several minor aesthetic enhancements and make the site feel a bit more ‘alive’. I added equalizer sound bars to the currently ‘playing’ track as well as a ‘floating’ arrow on the home page, indicating there was more content below the fold. These subtle visual additions, rather than detract from the content, actually enhance the user experience (though perhaps in ways that become more clear when there is actually music playing).</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="/img/blocjams_album3.png" alt="URL query language for album pages" /></td>
+      <td><img src="/img/blocjams_landing1.png" alt="URL query language for album pages" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="thats-a-wrap">That’s a Wrap!</h2>
+
+<p>Developing this simple ‘mock-up’ of a music streaming app provide the opportunity to revisit some of the cornerstones of web development. Any real-world project will involve many of the individual pieces that went into this site: responsive design, DOM navigation, HTML5 tags, block and inline elements, and more. I enjoyed being able to build something fun like BlocJams while reviewing the fundamentals that will continue serve me throughout my career.</p>
+</section>
+</article>
+
+<!-- Disqus -->
+
+
+    </div>
+    <script src="/js/main.js"></script>
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>Bloculator | Tyler BoddySpargo</title>
+	<meta name="description" content="This is a command-line calculator application written in Ruby. It converts infix notated expressions to postfix notation in order to perform the mathematic o...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="http://tyler.boddyspargo.com/portfolio/portfolio/bloculator.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Tyler BoddySpargo" href="http://tyler.boddyspargo.com/portfolio/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	 <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103027689-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-103027689-1');
+  </script>
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="https://secure.gravatar.com/avatar/e6191afa959c270e9e593538141dd011?s=100" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Tyler BoddySpargo</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/about/">
+					About
+				</a>
+			</li>
+			
+			
+			
+			<li>
+				<a class="page-link" href="/contact/">
+					Contact
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="/resume" title="Résumé">Résumé</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/tboddyspargo" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/tylerboddyspargo/" title="Follow on LinkedIn">
+		<i class="fa fa-fw fa-linkedin"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/bloculator_banner.png')">
+    <h1 class="title">Bloculator</h1>
+    <p class="meta">
+    February 1, 2018
+    
+    </p>
+  </header>
+  <section class="post-content"><p>This is a command-line calculator application written in Ruby. It converts infix notated expressions to postfix notation in order to perform the mathematic operations in the appropriate order even when provided complex expressions involving parenthesis, addition, subtraction, multiplication, division, and exponents.</p>
+
+<p><img src="/img/bloculator_main.png" alt="Bloculator main menu" /></p>
+
+<h1 id="mathematic-notation">Mathematic Notation</h1>
+
+<p>Working on this project afforded me the opportunity to learn a lot about mathematic notation. When humans write down mathematic expressions, they often use what’s called <a href="https://en.wikipedia.org/wiki/Infix_notation">infix</a> notation in which the operator is written in between operands and the ‘order of operations’ is obeyed unless parenthesis indicate a different grouping. While humans are great at using those visual tools to group and order various operations, machines have a harder time. Computers love to deal in queues where <em>order</em> is already taken care of. This type of notation is called <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">postfix</a>.</p>
+
+<p><em>[infix example]</em></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+<p><em>[postfix example]</em></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">31</span><span class="o">-</span><span class="mi">42</span><span class="o">+</span><span class="sr">/
+</span></code></pre></div></div>
+
+<p>A machine can evaluate the postfix expression above by moving from left to right and keeping track of all the numbers as it goes. Once it finds the first operator, it uses that operator to evaluate the most recent two numbers, puts the result on the top of the number ‘stack’ and continues evaluating.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">3</span>
+<span class="mi">31</span>
+<span class="p">(</span><span class="mi">31</span><span class="o">-</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="o">-</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="mi">24</span>
+<span class="mi">242</span>
+<span class="mi">2</span><span class="p">(</span><span class="mi">42</span><span class="o">+</span><span class="p">)</span> <span class="o">=</span> <span class="mi">4</span><span class="o">+</span><span class="mi">2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="mi">26</span>
+<span class="p">(</span><span class="mi">26</span><span class="o">/</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="mi">6</span> <span class="o">=</span> <span class="mf">0.33</span>
+</code></pre></div></div>
+
+<h1 id="history">History</h1>
+
+<p>Along with being able to evaluate complex expressions. It was important to me that Bloculator be able to keep track of the expressions you ask it to compute as well as the results of those expressions. This allows you to use previous results as part of subsequent expressions and to remember which expressions you previously entered.</p>
+
+<p><img src="/img/bloculator_history.png" alt="Expression history" /></p>
+
+<p><img src="/img/bloculator_results.png" alt="Result history" /></p>
+
+<p>One future enhancement that I’d like to see in Bloculator is the ability to export and import calculator histories (currently they only last for the duration of the current calculator instance) both to save calculator actions and to share or re-use results.</p>
+</section>
+</article>
+
+<!-- Disqus -->
+
+
+    </div>
+    <script src="/js/main.js"></script>
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>

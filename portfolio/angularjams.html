@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>AngularJams | Tyler BoddySpargo</title>
+	<meta name="description" content="Having worked with Angular in the past, using it to re-write BlocJams felt somewhat like coming home. Though the homecoming rather like returning after an ex...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="http://tyler.boddyspargo.com/portfolio/portfolio/angularjams.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Tyler BoddySpargo" href="http://tyler.boddyspargo.com/portfolio/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	 <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103027689-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-103027689-1');
+  </script>
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="https://secure.gravatar.com/avatar/e6191afa959c270e9e593538141dd011?s=100" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Tyler BoddySpargo</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/about/">
+					About
+				</a>
+			</li>
+			
+			
+			
+			<li>
+				<a class="page-link" href="/contact/">
+					Contact
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="/resume" title="Résumé">Résumé</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/tboddyspargo" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/tylerboddyspargo/" title="Follow on LinkedIn">
+		<i class="fa fa-fw fa-linkedin"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/blocjams_playback_dark.png')">
+    <h1 class="title">AngularJams</h1>
+    <p class="meta">
+    June 10, 2017
+    
+    </p>
+  </header>
+  <section class="post-content"><p>Having worked with Angular in the past, using it to re-write BlocJams felt somewhat like coming home. Though the homecoming rather like returning after an extended vacation! Everything was familiar, but I had just been immersed in the world of React. Angular was quite a contrast despite its familiarity and, admittedly, my previous exposure to Angular was not exactly ‘extensive’. Revisiting this well-known JavaScript framework helped me grasp concepts that I had overlooked before or simply not understood very well. Additionally, I could now compare it with React, another popular Front-End development library.</p>
+
+<hr />
+
+<h2 id="angularizing">Angularizing</h2>
+
+<p>Angular’s approach to SPAs is quite different from that of React. As such, basically the only things I could re-use from the React version of BlocJams in this project were the JSX (re-factored as HTML5 template files) and the CSS. That being said, certain Angular services also allow ES2015 <code class="language-plaintext highlighter-rouge">class</code> declarations for object prototypes, so I was able to use some of the ‘guts’ of the React class components as a starting point.</p>
+
+<p>Diving into the Angular specifics, I immediately started learning tons about the various use-cases for the different types of services; how to organize my app, controllers, directives, and services into their own files for readability; and the ways in which the different pieces fit together into the MVC model. My basic familiarity with Angular truly allowed this project to be incredibly informative because I could really dive deep and begin to understand the Angular concepts in much more depth than otherwise would have been possible.</p>
+
+<hr />
+
+<h2 id="third-parties-and-angular">Third Parties and Angular</h2>
+
+<p>My React version of BlocJams used a third party audio library called <a href="https://github.com/hadley/plyr"><code class="language-plaintext highlighter-rouge">plyr</code></a> for the audio playback functionality. Since I had become a bit familiar with this library, I decided to use it yet again for the Angular version. This was incredibly tricky, especially because I had come to understand how it worked within a React component, but struggled to replicate that exactly in Angular. Naturally, the complications all stemmed from the same situations that caused me such grief in the React version: using event listeners to update service properties so that dependent services/directives/controllers could use them to update their own HTML.</p>
+
+<p>Although I tried several variations including using a directive’s <code class="language-plaintext highlighter-rouge">link</code> function to bind an event listener, I finally landed on fully encapsulating the <code class="language-plaintext highlighter-rouge">plyr</code> functionality in a service that exposed the primary functionality of the library and offered an opportunity to both initialize the player (which relied to a certain extent on the DOM) and create the event listeners that would update the audio player’s seek bar as the music played.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">AudioService</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">init</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">player</span><span class="p">)</span> <span class="k">throw</span> <span class="dl">"</span><span class="s2">You must provide an instance of plyr.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">player</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="nx">player</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">timeupdate</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">positionUpdater</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">$destroy</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="dl">'</span><span class="s1">timeupdate</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">positionUpdater</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>That wasn’t the whole solution, however - and this is where I got to dig much deeper into how Angular is constructed. The event listener in question was operating outside of the scope of any Angular component or element. As such, it was not triggering the necessary Angular events for updating the DOM to match the properties they represent. The remediation for this was to explicitly tie the event listener actions to a <code class="language-plaintext highlighter-rouge">$scope</code>. Now, since I was using a Service, I didn’t have access to a normal DOM scope like controllers or directives. Instead, I injected the Angular <code class="language-plaintext highlighter-rouge">$rootScope</code> service into my service. Now, with an Angular scope at my disposal, I could ensure that the event listener’s changes were reflected in the corresponding DOM elements.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">AudioService</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">positionUpdater</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">seeking</span><span class="p">)</span> <span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$apply</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">player</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">getCurrentTime</span><span class="p">()</span> <span class="o">||</span> <span class="mi">0</span><span class="p">));</span>
+  <span class="p">};</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<hr />
+
+<h2 id="extra-jams">Extra Jam(s)</h2>
+
+<p>When the Angular version of BlocJams had reached the same level of functionality as the React version, I had an opportunity to have some fun with the Angular I had learned by adding some additional functionality. I loved the idea of being able to search the available songs and work with filtered arrays to provide a search field with ‘autocomplete’ functionality. While there was still no back-end to search through, nor a helpful organization of songs, I made do with what I had, extending the functionality of the <code class="language-plaintext highlighter-rouge">AlbumService</code> I had created previously to compile a list of all the songs. Then, I made a new directive for the search field and autocomplete results (complete with custom filter!).</p>
+
+<p><img src="/img/Screenshot 2017-07-20 19.28.19.png" alt="Navigation bar with search field" /></p>
+
+<p>The hardest part about the directive was binding the event listeners in such a way that the user interactions had the intended effect. This was made more difficult by the fact that I had to bind listeners differently on the <code class="language-plaintext highlighter-rouge">&lt;input/&gt;</code> field (where the keyboard would be used and <code class="language-plaintext highlighter-rouge">event.target</code> would represent the <code class="language-plaintext highlighter-rouge">&lt;input/&gt;</code> field rather than the desired item) than on the search results dropdown (where the mouse would be used to select the desired item).</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="dl">'</span><span class="s1">blocJams</span><span class="dl">'</span><span class="p">).</span><span class="nx">directive</span><span class="p">(</span><span class="dl">'</span><span class="s1">songSearcher</span><span class="dl">'</span><span class="p">,</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Utilities</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Utilities</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">restrict</span><span class="p">:</span> <span class="dl">'</span><span class="s1">AE</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">replace</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">scope</span><span class="p">:</span> <span class="p">{},</span>
+      <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/templates/song-searcher.html</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">link</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">attrs</span><span class="p">,</span> <span class="nx">Ctrl</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">element</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.search-results</span><span class="dl">'</span><span class="p">);</span>
+        <span class="kd">let</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">results</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.selected</span><span class="dl">'</span><span class="p">),</span>
+            <span class="nx">newSelected</span><span class="p">;</span>
+        <span class="nx">element</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">keydown mouseover</span><span class="dl">'</span><span class="p">,(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">38</span><span class="p">)</span> <span class="c1">//up arrow</span>
+            <span class="nx">newSelected</span> <span class="o">=</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">prev</span><span class="p">(</span><span class="nx">selected</span> <span class="o">||</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+          <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">40</span><span class="p">)</span> <span class="c1">//down arrow</span>
+            <span class="nx">newSelected</span> <span class="o">=</span> <span class="nx">selected</span> <span class="p">?</span> <span class="p">(</span><span class="nx">selected</span><span class="p">.</span><span class="nx">next</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nx">selected</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">:</span> <span class="nx">results</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+          <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">mouseover</span><span class="dl">'</span><span class="p">)</span>
+            <span class="nx">newSelected</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+          <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">13</span><span class="p">)</span> <span class="c1">//return key</span>
+            <span class="nx">Ctrl</span><span class="p">.</span><span class="nx">navigate</span><span class="p">(</span><span class="dl">'</span><span class="s1">album</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="nx">selected</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">album</span> <span class="p">});</span>
+          <span class="k">else</span> <span class="k">return</span><span class="p">;</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">selected</span><span class="p">)</span> <span class="nx">selected</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="dl">'</span><span class="s1">selected</span><span class="dl">'</span><span class="p">);</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">newSelected</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+            <span class="nx">newSelected</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="nx">newSelected</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">newSelected</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="dl">'</span><span class="s1">search-result-item</span><span class="dl">'</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+            <span class="nx">selected</span> <span class="o">=</span> <span class="nx">newSelected</span><span class="p">;</span>
+            <span class="nx">selected</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="dl">'</span><span class="s1">selected</span><span class="dl">'</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">});</span>
+      <span class="p">},</span>
+      <span class="na">controller</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">AlbumService</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$state</span><span class="dl">'</span><span class="p">,</span> <span class="nx">songSearcherController</span><span class="p">],</span>
+      <span class="na">controllerAs</span><span class="p">:</span> <span class="dl">'</span><span class="s1">songSearchCtrl</span><span class="dl">'</span>
+    <span class="p">};</span>
+  <span class="p">}]);</span>
+</code></pre></div></div>
+
+<p>Afterward I discovered some (arguably) easier methods for implementing search autocomplete (like <code class="language-plaintext highlighter-rouge">&lt;datalist&gt;</code> or jquery-ui’s <code class="language-plaintext highlighter-rouge">.autocomplete()</code> method), but I was pleased with the results of my efforts. It was simple, fit in the style of the web page, and would meet most users’ expectations as far as search autocomplete fields go.</p>
+
+<hr />
+
+<h2 id="react-vs-angular">React vs Angular</h2>
+
+<p>Writing the Angular version of BlocJams really helped me build a solid foundational understanding of Angular and how it can be used to build powerful apps. I found that Angular was a bit easier to wrap my mind around than React was; although I can’t discount the advantage of having actually used Angular in the past. Dependency injection allowed me to easily and clearly share functionality between parts of my app. The difference between React and Angular here is that in React, you don’t immediately know where a <code class="language-plaintext highlighter-rouge">prop</code> is coming from; the parent Component, yes, but it could also belong to any one of the ancestors. In Angular, since you inject the service into each component that needs it, you know immediately where it came from and don’t need to jump through a hierarchy of Components to discover its origins.</p>
+
+<p>That being said, I think that I ran into fewer ‘errors’ while building the React app and didn’t have to do quite as much research to achieve what I was imagining. Additionally, I think my React implementation may have taken fewer hours overall to complete; I have this sense that it came together a bit more quickly. They both use significantly different approaches to front-end web development and I think it was incredibly rewarding to have experienced both, but I would need much more time getting comfortable with each before I felt confident that I was using them as intended and going about things ‘the React or Angular way’.</p>
+
+<p>I’ve heard that Angular 2 and 4 are completely different animals than their common ancestor and I’m excited to explore the differences. Perhaps they will incorporate some of the Component-model that React relies on so heavily such that the differences between the two will blur a bit. I can’t wait to find out!</p>
+</section>
+</article>
+
+<!-- Disqus -->
+
+
+    </div>
+    <script src="/js/main.js"></script>
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>

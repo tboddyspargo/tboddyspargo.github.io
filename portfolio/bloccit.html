@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>Bloccit | Tyler BoddySpargo</title>
+	<meta name="description" content="This web application is a reddit-styled forum site written in Ruby on Rails. Bloccit users can contribute to a variety of conversation topics. Members vote o...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="http://tyler.boddyspargo.com/portfolio/portfolio/bloccit.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Tyler BoddySpargo" href="http://tyler.boddyspargo.com/portfolio/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	 <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103027689-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-103027689-1');
+  </script>
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="https://secure.gravatar.com/avatar/e6191afa959c270e9e593538141dd011?s=100" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Tyler BoddySpargo</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/about/">
+					About
+				</a>
+			</li>
+			
+			
+			
+			<li>
+				<a class="page-link" href="/contact/">
+					Contact
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="/resume" title="Résumé">Résumé</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/tboddyspargo" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/tylerboddyspargo/" title="Follow on LinkedIn">
+		<i class="fa fa-fw fa-linkedin"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/bloccit_landing1_banner.png')">
+    <h1 class="title">Bloccit</h1>
+    <p class="meta">
+    December 1, 2017
+    
+    </p>
+  </header>
+  <section class="post-content"><p>This web application is a reddit-styled forum site written in Ruby on Rails. Bloccit users can contribute to a variety of conversation topics. Members vote on the relevance of each post so that current trends are apparent to all users.</p>
+
+<h2 id="ruby-on-rails">Ruby on Rails</h2>
+
+<p>Bloccit wasn’t my first foray into the world of Ruby on Rails, but it was my most in-depth and well-rounded Rails experience. I love the principles on which Rails is built: convention surrounding common and mature web application needs can lead to reducing developer load, shorten the path from conception to release, and make for more manageable codebases. In my own life, I have encountered the frustrations that accompany a free-for-all code culture. Often in these situations, my teams have resorted to defining and enforcing standards, but those standards are often abstract and must be taught. With Rails, the conventions are inherent to using the technology and don’t vary too much from company to company. It’s a joy to learn those conventions in the context of being introduced to a new framework - it feels like swimming with the current, rather than against it.</p>
+
+<p><img src="https://tboddyspargo.github.io/img/bloccit_landing1.png" alt="Bloccit Landing page" /></p>
+
+<h2 id="test-driven-development-tdd">Test Driven Development (TDD)</h2>
+
+<p>When writing Bloccit, I always wrote tests for each piece of functionality before I implemented it. This method, called Test Driven Development, is a practice that encourages thoughtful features, ensures much more maintainable code, and helps refactoring efforts down the road.</p>
+
+<p>The tests for Bloccit are written using the RSpec framework, which greatly facilitates writing concise, quasi-natural-language tests. While, the built-in rails testing framework is quite good, RSpec is a well known and respected name that enhances the developer experience when writing tests and reviewing the tests that others write.</p>
+
+<p>Here’s an example of how easy to read these tests can be:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">Vote</span><span class="p">,</span> <span class="ss">type: :model</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">is_expected</span><span class="p">.</span><span class="nf">to</span> <span class="n">belong_to</span><span class="p">(</span><span class="ss">:post</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">is_expected</span><span class="p">.</span><span class="nf">to</span> <span class="n">belong_to</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">is_expected</span><span class="p">.</span><span class="nf">to</span> <span class="n">validate_presence_of</span><span class="p">(</span><span class="ss">:value</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">is_expected</span><span class="p">.</span><span class="nf">to</span> <span class="n">validate_inclusion_of</span><span class="p">(</span><span class="ss">:value</span><span class="p">).</span><span class="nf">in_array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="p">}</span>
+
+  <span class="n">describe</span> <span class="s2">"update_post callback"</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"triggers update_post on save"</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">vote</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:update_post</span><span class="p">).</span><span class="nf">at_least</span><span class="p">(</span><span class="ss">:once</span><span class="p">)</span>
+      <span class="n">vote</span><span class="p">.</span><span class="nf">save!</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">"#update_post should call update_rank on post"</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">post</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:update_rank</span><span class="p">).</span><span class="nf">at_least</span><span class="p">(</span><span class="ss">:once</span><span class="p">)</span>
+      <span class="n">vote</span><span class="p">.</span><span class="nf">save!</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The model tests rarely fail once they are written, but they ensure that the underlying functionality of the data doesn’t change without the developers becoming aware fairly quickly. As the tests get more specific they have a higher chance of being affected by changes to controllers (for example). I found that the tests for the URL routes and associated controller action outcomes were extremely helpful as I refactored the code, added features, and adjusted routes to improve the user experience. As long as the tests kept passing, I new that the site would behave as expected, and if they failed then I either had to adjust the tests to match new expectations or the code to produce the expected outcome.</p>
+
+<p><img src="https://tboddyspargo.github.io/img/bloccit_post1.png" alt="Post form" /></p>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>There are many pre-built Ruby gems that help extend Rails functionality to include standard features for user authentication - something that almost all web applications need. Using <a href="https://github.com/codahale/bcrypt-ruby">Bcrypt</a>, I was able to quickly implement a secure method for allowing users to authenticate into my application without having to learn all about cyber security and implement my own. Bcrypt seems to be a well-respected open encryption algorithm tool that works well with Ruby. Once I implemented this very simple tool, I had a site that users could sign up for and suddenly, many user stories started to take shape that were not previously possible.</p>
+
+<h2 id="sessions">Sessions</h2>
+
+<p>In addition to the authentication aspect of user interactions with Bloccit, I also had to handle user sessions (whether someone is currently logged in or not). Again, Rails made this easy by providing the <code class="language-plaintext highlighter-rouge">session</code> hash where I could keep track of whether or not a user has logged in recently. Used with SSL, this is a secure method for recognizing that the user is authenticated and keeping their experience consistent with that fact. Since I can tell if a user has a session, I can also restrict parts of the site based on that fact. I also added a <code class="language-plaintext highlighter-rouge">role</code> enum attribute to the User object to enhance this ability and allow <code class="language-plaintext highlighter-rouge">:admin</code> users more power to control the applications content than regular <code class="language-plaintext highlighter-rouge">:member</code> users. Testing these differences in experience was complicated and led to quite long RSpec tests, but ensured that the experience matched the design.</p>
+
+<p><img src="https://tboddyspargo.github.io/img/bloccit_signup1.png" alt="Sign up" /></p>
+
+<h2 id="mailer">Mailer</h2>
+
+<p>Bloccit provided me with a really exciting opportunity to work with triggered notification features. These are a standard part of any business/social web application feature set and fit well into the Bloccit experience. Using Rails’ built-in <code class="language-plaintext highlighter-rouge">ActionMailer</code> class, I was able to easily define the a mailer action and then call that action based on an event - in my case, when a new comment was added to a post that users had favorited. They then received an email displaying the new comment and providing a link to the full post discussion. This functionality was surprisingly easy to build and contributed greatly to the ‘richness’ of the Bloccit experience.</p>
+
+<p><img src="https://tboddyspargo.github.io/img/bloccit_email1.png" alt="Mailer notification" /></p>
+
+<h2 id="pop-lock-and-bloccit">Pop, Lock, and Bloccit</h2>
+
+<p>Creating this social web application with Ruby on Rails was extremely rewarding as it was one of the first fully-functional web applications I had built from the ground-up. I now feel prepared to take these same ideas and principels – TDD, user stories, security around authentication and session managment, automatic notifications, and more – and build something that truly solves a real-world problem that I’m passionate about. I’m very excited to use Ruby on Rails in future projects and build something even more complex and feature-rich!</p>
+</section>
+</article>
+
+<!-- Disqus -->
+
+
+    </div>
+    <script src="/js/main.js"></script>
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>
